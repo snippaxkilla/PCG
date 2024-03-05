@@ -1,38 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
 {
     public int openingDirection;
 
+    private RoomTemplates templates;
+    private bool spawned = false;
     
-    void Start()
+    private void Start()
+    {
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        Invoke("Spawn", 0.1f);
+    }
+
+    private void Update()
     {
         
     }
 
-    void Update()
+    private void Spawn() 
     {
-        if (openingDirection == 1) 
+        if (spawned == false)
         {
-            // Need to spawn a room with a BOTTOM door
-            // Need to spawn a room with a TOP door
-        }
-        else if (openingDirection == 2)
-        {
-            // Need to spawn a room with a LEFT door
-            // Need to spawn a room with a RIGHT door
-        }
-        else if (openingDirection == 3)
-        {
-            // Need to spawn a room with a TOP door
-            // Need to spawn a room with a RIGHT door
-        }
-        else if (openingDirection == 4)
-        {
-            // Need to spawn a room with a BOTTOM door
-            // Need to spawn a room with a RIGHT door
+            if (openingDirection == 1)
+            {
+                // Need to spawn a room with a BOTTOM door
+                Instantiate(templates.bottomRooms[Random.Range(0, templates.bottomRooms.Length)], transform.position, Quaternion.identity);
+            }
+            else if (openingDirection == 2)
+            {
+                // Need to spawn a room with a TOP door
+                Instantiate(templates.topRooms[Random.Range(0, templates.topRooms.Length)], transform.position, Quaternion.identity);
+            }
+            else if (openingDirection == 3)
+            {
+                // Need to spawn a room with a LEFT door
+                Instantiate(templates.leftRooms[Random.Range(0, templates.leftRooms.Length)], transform.position, Quaternion.identity);
+            }
+            else if (openingDirection == 4)
+            {
+                // Need to spawn a room with a RIGHT door
+                Instantiate(templates.rightRooms[Random.Range(0, templates.rightRooms.Length)], transform.position, Quaternion.identity);
+            }
+            spawned = true;
         }
     }
 }
