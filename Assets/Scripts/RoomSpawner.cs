@@ -13,11 +13,6 @@ public class RoomSpawner : MonoBehaviour
         Invoke("Spawn", 0.1f);
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("SpawnPoint") && collision.GetComponent<RoomSpawner>().spawned == true)
@@ -26,31 +21,37 @@ public class RoomSpawner : MonoBehaviour
         }
     }
 
-    private void Spawn() 
+    private void Spawn()
     {
-        if (spawned == false)
+        if (!spawned)
         {
-            if (openingDirection == 1)
+            GameObject toSpawn = null;
+            switch (openingDirection)
             {
-                // Need to spawn a room with a BOTTOM door
-                Instantiate(templates.bottomRooms[Random.Range(0, templates.bottomRooms.Length)], transform.position, Quaternion.identity);
+                case 1:
+                    toSpawn = templates.bottomRooms[Random.Range(0, templates.bottomRooms.Length)];
+                    break;
+                case 2:
+                    toSpawn = templates.topRooms[Random.Range(0, templates.topRooms.Length)];
+                    break;
+                case 3:
+                    toSpawn = templates.leftRooms[Random.Range(0, templates.leftRooms.Length)];
+                    break;
+                case 4:
+                    toSpawn = templates.rightRooms[Random.Range(0, templates.rightRooms.Length)];
+                    break;
             }
-            else if (openingDirection == 2)
+
+            if (toSpawn != null)
             {
-                // Need to spawn a room with a TOP door
-                Instantiate(templates.topRooms[Random.Range(0, templates.topRooms.Length)], transform.position, Quaternion.identity);
+                // Instantiate as child of a new, correctly positioned GameObject
+                GameObject roomParent = new GameObject("RoomParent");
+                roomParent.transform.position = transform.position; // Set the parent's position to the spawner's position
+                Instantiate(toSpawn, roomParent.transform);
             }
-            else if (openingDirection == 3)
-            {
-                // Need to spawn a room with a LEFT door
-                Instantiate(templates.leftRooms[Random.Range(0, templates.leftRooms.Length)], transform.position, Quaternion.identity);
-            }
-            else if (openingDirection == 4)
-            {
-                // Need to spawn a room with a RIGHT door
-                Instantiate(templates.rightRooms[Random.Range(0, templates.rightRooms.Length)], transform.position, Quaternion.identity);
-            }
+
             spawned = true;
         }
     }
+
 }
