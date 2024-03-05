@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ public class DungeonGenerator : MonoBehaviour
 {
     public int mapWidth = 64;
     public int mapHeight = 64;
-    public GameObject[] roomPrefabs;
+    public GameObject roomPrefab;
 
     private List<Vector2> roomPositions = new List<Vector2>();
 
@@ -17,16 +18,16 @@ public class DungeonGenerator : MonoBehaviour
     void GenerateDungeon()
     {
         roomPositions.Clear();
-        Vector2 currentPos = Vector2.zero; 
+        // Starting position for the dungeon
+        Vector2 currentPos = new Vector2(mapWidth / 2, mapHeight / 2);
         roomPositions.Add(currentPos);
-        CreateRoomAtPosition(currentPos); 
 
-        int numberOfRooms = Random.Range(200, 1000); 
+        int numberOfRooms = Random.Range(10, 20); // Randomize the number of rooms
 
         for (int i = 0; i < numberOfRooms; i++)
         {
             Vector2 newPos = currentPos;
-            switch (Random.Range(0, 4))
+            switch (Random.Range(0, 4)) // 0: up, 1: right, 2: down, 3: left
             {
                 case 0:
                     newPos += Vector2.up;
@@ -46,26 +47,20 @@ public class DungeonGenerator : MonoBehaviour
             {
                 roomPositions.Add(newPos);
                 currentPos = newPos;
-                CreateRoomAtPosition(newPos); 
+                Instantiate(roomPrefab, new Vector3(newPos.x, newPos.y, 0), Quaternion.identity);
             }
         }
-    }
-
-    void CreateRoomAtPosition(Vector2 position)
-    {
-        GameObject roomPrefab = roomPrefabs[Random.Range(0, roomPrefabs.Length)];     
-        Instantiate(roomPrefab, new Vector3(position.x, position.y, 0), Quaternion.identity);
     }
 
     bool IsValidPosition(Vector2 newPos)
     {
         if (newPos.x < 0 || newPos.x >= mapWidth || newPos.y < 0 || newPos.y >= mapHeight)
         {
-            return false; 
+            return false; // New position is outside the dungeon bounds
         }
         if (roomPositions.Contains(newPos))
         {
-            return false; 
+            return false; // A room already exists at the new position
         }
         return true;
     }

@@ -259,15 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb209bafe9bfe334086c07eab5bae011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapWidth: 64
-  mapHeight: 64
-  roomPrefabs:
-  - {fileID: 8075115303447979059, guid: 5773df0f1534e484f8cd3105dc03b902, type: 3}
-  - {fileID: 2274778487099008791, guid: dca16e4b1a734dc428e5aabe9be34230, type: 3}
-  - {fileID: 2519542279400289717, guid: 56bf49019d61a284ca268ce172abbcea, type: 3}
-  - {fileID: 1337137505194523074, guid: 31261f422b394c245b67bed1b6e429c7, type: 3}
-  - {fileID: 8197319294282647448, guid: 2460b4221aec31440ae5d8d4200eeec7, type: 3}
-  - {fileID: 3795767476833729217, guid: a8d68d23d0d16664e9c399ee72f10a3d, type: 3}
+  width: 64
+  height: 64
+  roomPrefab: {fileID: 8075115303447979059, guid: 5773df0f1534e484f8cd3105dc03b902, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
