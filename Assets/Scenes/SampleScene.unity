@@ -179,10 +179,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5211967399126029539, guid: 5d23b0e22a186c2448627373b6087c67, type: 3}
+      propertyPath: m_Name
+      value: Destroyer
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3822758083526100407, guid: 5d23b0e22a186c2448627373b6087c67, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5211967399126029539, guid: 5d23b0e22a186c2448627373b6087c67, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1429829654}
   m_SourcePrefab: {fileID: 100100000, guid: 5d23b0e22a186c2448627373b6087c67, type: 3}
 --- !u!1 &519420028
 GameObject:
@@ -340,6 +348,26 @@ MonoBehaviour:
   - {fileID: 4648027213696452184, guid: 553da53034f000f47bc61e65ca8d8067, type: 3}
   - {fileID: 1125238936801962308, guid: 6e51b3a5efd9cb646bc91ab70648c263, type: 3}
   - {fileID: 2894948613701647855, guid: f334dcebf4506d444bcd3002d12d9b25, type: 3}
+  rooms: []
+  waitTime: 0
+  boss: {fileID: 7577564202899789046, guid: e51e0fcde0a602f4d89eef8274fa000f, type: 3}
+--- !u!1 &1429829650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5211967399126029539, guid: 5d23b0e22a186c2448627373b6087c67, type: 3}
+  m_PrefabInstance: {fileID: 38505867}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1429829654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429829650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86397763d455d64e9a185c67e5e79f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
